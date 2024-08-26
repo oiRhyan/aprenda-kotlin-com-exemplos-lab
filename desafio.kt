@@ -1,21 +1,30 @@
-// [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
-
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
-
-class Usuario
-
-data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
-
-data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
-
-    val inscritos = mutableListOf<Usuario>()
-    
-    fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
-    }
-}
+import models.*
 
 fun main() {
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+
+    val lista_de_conteudos : List<ConteudoEducacional> = ConteudoEducacional.DIOContent
+
+    val aluno1 : Usuario = Usuario("Rhyan Araujo", 19, null)
+    val aluno2 : Usuario = Usuario("Miguel Silva", 20, null)
+    val aluno3 : Usuario = Usuario("Matheus Mortari", 17, null)
+
+    val sistema_de_formacoes = Formacao(lista_de_conteudos)
+
+    sistema_de_formacoes.matricular(aluno1, lista_de_conteudos, level = Nivel.AVANCADO, "Android Developer")
+    sistema_de_formacoes.matricular(aluno2, lista_de_conteudos, level = Nivel.INTERMEDIARIO, "Analista de Dados")
+    sistema_de_formacoes.matricular(aluno3, lista_de_conteudos, level = Nivel.BASICO, "Full Stack Developer")
+
+
+    println("----- RESULTADO ------")
+    sistema_de_formacoes.requisitarInscritos()
+    println("----------------------")
+    aluno1.requisitarDadosUsuario()
+    println("----------------------")
+    aluno2.requisitarDadosUsuario()
+    println("----------------------")
+    aluno3.requisitarDadosUsuario()
+    println("----------------------")
+    println("Matriculas Ativas")
+    Matricula.requisitarMatriculas()
+
 }
